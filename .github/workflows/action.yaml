@@ -8,3 +8,5 @@ jobs:
         uses: actions/checkout@v2
       - name: docker build
         run: docker build -t destroasm/test_app1:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+      - name: docker push
+        run: docker push destroasm/test_app1:$GITHUB_REF_NAME-$GITHUB_RUN_ID
