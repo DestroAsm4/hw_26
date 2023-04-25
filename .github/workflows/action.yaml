@@ -36,3 +36,13 @@ jobs:
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask_app_ci"
           strip_components: 1
+      - name: deploy app
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            script: |
+              cd flask_app_ci
+              echo ${{ secrets.PASSWORD }} | -S sudo docker-compose up -d
+
